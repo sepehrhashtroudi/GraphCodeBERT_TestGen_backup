@@ -1,23 +1,23 @@
 #!/bin/bash
-#SBATCH --gres=gpu:1       # Request GPU "generic resources"
-#SBATCH --cpus-per-task=3  # Refer to cluster's documentation for the right CPU/GPU ratio
+#SBATCH --gres=gpu:8       # Request GPU "generic resources"
+#SBATCH --cpus-per-task=8  # Refer to cluster's documentation for the right CPU/GPU ratio
 #SBATCH --mem=32000M       # Memory proportional to GPUs: 32000 Cedar, 47000 Béluga, 64000 Graham.
-#SBATCH --time=0-03:00     # DD-HH:MM:SS
+#SBATCH --time=3-03:00     # DD-HH:MM:SS
 
-source ~/TestGenEnv/bin/activate
+source ./Env/bin/activate
 
 
 
-source=java
-target=cs
+source=methods
+target=tests
 lr=1e-4
 batch_size=32
 beam_size=10
 source_length=320
 target_length=256
-output_dir=saved_models/$source-$target/
-train_file=data/train.java-cs.txt.$source,data/train.java-cs.txt.$target
-dev_file=data/valid.java-cs.txt.$source,data/valid.java-cs.txt.$target
+output_dir=saved_models/dec_10_fulldata_graphcodebert/$source-$target/
+train_file=dataset/train.$source,dataset/train.$target
+dev_file=dataset/eval.$source,dataset/eval.$target
 epochs=100
 pretrained_model=graphcodebert-base
 
@@ -26,7 +26,7 @@ python run.py \
 --do_train \
 --do_eval \
 --model_type roberta \
---source_lang $source \
+--source_lang java \
 --model_name_or_path $pretrained_model \
 --tokenizer_name graphcodebert-base \
 --config_name graphcodebert-base \

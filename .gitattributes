@@ -1,0 +1,2 @@
+*.methods filter=lfs diff=lfs merge=lfs -text
+*.tests filter=lfs diff=lfs merge=lfs -text
