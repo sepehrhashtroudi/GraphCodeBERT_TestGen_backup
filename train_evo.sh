@@ -15,9 +15,9 @@ batch_size=32
 beam_size=10
 source_length=320
 target_length=256
-output_dir=saved_models/dec_6_CombinedData_graphcodebert/$source-$target/
-train_file=dataset/combined/train_combined.$source,dataset/combined/train_combined.$target
-dev_file=dataset/combined/eval_combined.$source,dataset/combined/eval_combined.$target
+output_dir=saved_models/dec_4_Data100000_graphcodebert/$source-$target/
+train_file=dataset/small/train_100000.$source,dataset/small/train_100000.$target
+dev_file=dataset/small/eval_10000.$source,dataset/small/eval_10000.$target
 epochs=50
 pretrained_model=graphcodebert-base
 
